@@ -1,0 +1,32 @@
+# =========================
+# Python cache
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# =========================
+# Config (secrets / local configs)
+# =========================
+configs/config.py
+configs/gen-lang-client-0604379001-ec135eba17a9.json
+
+# =========================
+# Audio assets
+# =========================
+assets/*.mp3
+assets/*.wav
+
+# =========================
+# Output folders (generated results)
+# =========================
+outputs/
+
+# =========================
+# IDE / system files (optional but recommended)
+# =========================
+.vscode/
+.idea/
+.DS_Store
