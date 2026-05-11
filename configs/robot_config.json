@@ -1,0 +1,22 @@
+{
+  "nuri5s": {
+    "ip": "192.168.1.2",
+    "ip0": "127.0.1.2",
+    "ip2": "192.168.10.164",
+    "ip3": "192.168.0.62",
+
+    "license_key": "5C4F3B70AA24657A9A25FF616761318EFB2077E836DA67565B1737874581704C",
+    "expire_date": "2026-09-10",
+    "license_key_kaist": "C278F584938E6D90F6A0F28DB34E1E39713463E17CAF15F402EEB6C72453F5D0",
+    "expire_date_kaist": "2025-12-31",
+    "license_key_cb3": "9B829ABB7F956BCDBB723B265AAB7664853EF9E37208ADEF2ACABD46C2A77ADA",
+    "expire_date_cb3": "2026-06-30",
+    "license_key_nc_15": "5C4F3B70AA24657A9A25FF616761318EFB2077E836DA67565B1737874581704C",
+    "expire_date_nc15": "2026-09-10"
+  },
+
+  "int_var/cmd/start/addr" : 600,
+  "int_var/cmd/finish/addr" : 700,
+  "conty_main_program_index": 1  
+}
+
