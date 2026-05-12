@@ -46,7 +46,7 @@ import time
 
 from core import get_stt_fn, get_llm_fn, AudioRecorder
 from modules.tts_modules import TTSManager
-from utils.robot_commands import set_mode
+from utils.robot_commands import execute_command
 from configs import globals as g
 from utils import Logger
 from configs import STT_MODEL, LLM_MODEL, TTS_MODEL, INPUT_MODE
@@ -136,7 +136,7 @@ class VoiceControlSystem:
                         g.set_speak_request("네")
                         await asyncio.sleep(0.5)
                         
-                        audio_path = self.recorder.record_to_file("user_voice.wav", mode="vad")
+                        audio_path = self.recorder.record_to_file("user_voice.wav", mode="manual")
                         await self._process_voice_command(audio_path)
                         
                         detector.reset()
@@ -182,19 +182,17 @@ class VoiceControlSystem:
                 g.set_voice_command(res_data)
                 
                 # 로봇 명령 실행
-                if res_data.get("action") == "mode":
-                    mode = res_data.get("aux0")
-                    result = set_mode(mode)
+                action = res_data.get("action")
+                if action:
+                    result = execute_command(action)
                     if result:
                         Logger.success(result)
-                        # 현재 로봇 상태 출력
-                        current_mode = g.get_robot_mode()
-                        Logger.info(f"현재 로봇 모드: {current_mode}", emoji="🔧")
+                        Logger.info(f"현재 로봇 모드: {g.get_robot_mode()}", emoji="🔧")
                 else:
                     Logger.warning("실행 가능한 명령이 없습니다")
                 
                 # TTS 요청 및 완료 대기
-                feedback = res_data.get("aux1", "")
+                feedback = res_data.get("description", "")
                 if feedback:
                     g.set_speak_request(feedback)
                     await self._wait_for_tts()
@@ -227,19 +225,17 @@ class VoiceControlSystem:
         g.set_voice_command(res_data)
         
         # 로봇 명령 실행
-        if res_data.get("action") == "mode":
-            mode = res_data.get("aux0")
-            result = set_mode(mode)
+        action = res_data.get("action")
+        if action:
+            result = execute_command(action)
             if result:
                 Logger.success(result)
-                # 현재 로봇 상태 출력
-                current_mode = g.get_robot_mode()
-                Logger.info(f"현재 로봇 모드: {current_mode}", emoji="🔧")
+                Logger.info(f"현재 로봇 모드: {g.get_robot_mode()}", emoji="🔧")
         else:
             Logger.warning("실행 가능한 명령이 없습니다")
         
         # TTS 요청 및 완료 대기
-        feedback = res_data.get("aux1", "")
+        feedback = res_data.get("description", "")
         if feedback:
             g.set_speak_request(feedback)
             await self._wait_for_tts()
