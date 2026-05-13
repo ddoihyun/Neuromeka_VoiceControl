@@ -47,8 +47,18 @@ Speaker
 ## 🚀 시작하기
 
 ### 1️⃣ 환경 설정
-Python 3.9 이상 환경에서 의존성 설치:
 
+Python 3.11로 venv 생성
+```bash
+py -3.11 -m venv .venv311
+```
+
+가상환경 활성화
+```bash
+.\.venv311\Scripts\Activate.ps1
+```
+
+Python 3.9 이상 환경에서 의존성 설치:
 ```bash
 pip install -r requirements.txt
 ```
